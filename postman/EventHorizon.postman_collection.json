@@ -1,0 +1,96 @@
+{
+  "info": {
+    "_postman_id": "6e5d0d5c-9c1b-4d0d-9b1c-eventhorizon",
+    "name": "EventHorizon API",
+    "description": "Postman collection for the EventHorizon authentication API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "jwt",
+      "value": ""
+    },
+    {
+      "key": "verificationToken",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/health"
+      }
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": "{{baseUrl}}/api/auth/register"
+      }
+    },
+    {
+      "name": "Verify Email",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"token\": \"{{verificationToken}}\"\n}"
+        },
+        "url": "{{baseUrl}}/api/auth/verify-email"
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"jane@example.com\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": "{{baseUrl}}/api/auth/login"
+      }
+    },
+    {
+      "name": "Get Profile",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt}}"
+          }
+        ],
+        "url": "{{baseUrl}}/api/user/profile"
+      }
+    }
+  ]
+}
